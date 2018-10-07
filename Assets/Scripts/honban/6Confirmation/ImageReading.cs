@@ -8,7 +8,6 @@ public class ImageReading : MonoBehaviour {
 
     RawImage rawimage;
     Texture2D tex;
-    CameraReader cr;
 
     public static byte[] ReadPngFile(string path)
     {

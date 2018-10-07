@@ -12,7 +12,6 @@ public class spot
     public string   description    = string.Empty;
     public float      latitude    = 0.0f;
     public float     longitude  = 0.0f;
-    public byte[] bytes;
 } 
 
 public class JsonData : MonoBehaviour
@@ -29,13 +28,12 @@ public class JsonData : MonoBehaviour
         spot.description = InputSpotDescription.text; //スポットの説明
         spot.latitude = GetLocation.latitude; //緯度
         spot.longitude = GetLocation.longitude; //経度
-        bytes = CameraReader.bytes;
 
         // JSONにシリアライズ
         var json = JsonUtility.ToJson (spot);
 
         // フォルダに保存する
-        var path = Application.dataPath + "/Json/sample.txt";
+        var path = Application.dataPath + "/Json/sample.txt";//パス指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();
