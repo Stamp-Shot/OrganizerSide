@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +13,6 @@ public class GetLocation : MonoBehaviour
     RawImage Map;
 
     string url = "https://maps.googleapis.com/maps/api/staticmap?center=";
-
-    string test = "hello";
 
     // Use this for initialization;
     void Start()

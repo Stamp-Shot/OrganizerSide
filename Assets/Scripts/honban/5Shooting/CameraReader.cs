@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,7 +24,7 @@ public class CameraReader : MonoBehaviour
         webcamTexture = new WebCamTexture(devices[0].name, this.width, this.height, this.fps);
         GetComponent<Renderer>().material.mainTexture = webcamTexture; //ゲームオブジェクトにウェブカメラを適用
 
-        //TODO ここにカメラの向き変更を適用するコードを書きたい
+        //TODO 時間があればここにカメラの向き変更を適用するコードを書きたい
 
         webcamTexture.Play(); //カメラ起動
     }
