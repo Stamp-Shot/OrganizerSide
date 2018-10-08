@@ -6,7 +6,7 @@ using System; // UnityJsonを使う場合に必要
 using System.IO; // ファイル書き込みに必要
 
 [Serializable]
-public class spot
+public class Spot
 {
     public string   name    = string.Empty;
     public string   description    = string.Empty;
@@ -21,7 +21,7 @@ public class JsonData : MonoBehaviour
 
     public void OnClick()
     {
-        var spot = new spot();
+        var spot = new Spot();
 
         //データ入力
         spot.name = InputSpotName.text; //スポット名
@@ -33,7 +33,7 @@ public class JsonData : MonoBehaviour
         var json = JsonUtility.ToJson (spot);
 
         // フォルダに保存する
-        var path = Application.dataPath + "/Json/" + spot.name + ".txt";//ファイル名をspot名にしてファイル指定
+        var path = Application.dataPath + "/Json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();
