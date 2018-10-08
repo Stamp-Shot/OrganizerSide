@@ -20,7 +20,8 @@ public class ImageReading : MonoBehaviour {
         return values;
     }
 
-    public static Texture2D ReadPng(string path)//画像ファイルのパスを投げるとテクスチャが返ってくる
+    //画像ファイルのパスを投げるとテクスチャが返ってくる
+    public static Texture2D ReadPng(string path)
     {
         byte[] readBinary = ReadPngFile(path);
 
@@ -46,7 +47,7 @@ public class ImageReading : MonoBehaviour {
     }
 
 
-    // Use this for initialization 
+    
     void Start()
     {
         tex = new Texture2D(810, 1440);
@@ -54,7 +55,7 @@ public class ImageReading : MonoBehaviour {
 
         rawimage = GetComponent<RawImage>();
         //rawimage.texture = ReadPng(path);
-        tex.LoadImage(CameraReader.bytes);
+        tex.LoadImage(CameraReader.bytes); //最新の写真をCameraReaderクラスから読み込む
         rawimage.texture = tex;
     }
 }

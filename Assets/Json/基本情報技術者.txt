@@ -1,0 +1,1 @@
+{"name":"基本情報技術者","description":"テキスト","latitude":0.0,"longitude":0.0}
