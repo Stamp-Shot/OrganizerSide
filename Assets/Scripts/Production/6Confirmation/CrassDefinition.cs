@@ -73,6 +73,10 @@ public class LatLng
 public class responseBody
 {
     public List<AnnotateImageResponse> responses;
+    public List<EntityAnnotation> RetAnnotation()
+    {
+        return responses[0].labelAnnotations;
+    }
 }
 
 [Serializable]
@@ -81,6 +85,7 @@ public class AnnotateImageResponse
     public List<EntityAnnotation> labelAnnotations;
 }
 
+//要素とかのデータ
 [Serializable]
 public class EntityAnnotation
 {
@@ -119,4 +124,10 @@ public class Property
 {
     string name;
     string value;
+}
+
+public class ComparisonData
+{
+    public string description;
+    public float score;
 }
