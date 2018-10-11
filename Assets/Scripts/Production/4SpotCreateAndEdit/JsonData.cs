@@ -41,7 +41,7 @@ public class JsonData : MonoBehaviour
     }
 }
 
-    //配列を作成するためのクラス
+//配列を作成するためのクラス
 public static class JsonHelper 
 { 
     public static T[] FromJson<T>(string json) 

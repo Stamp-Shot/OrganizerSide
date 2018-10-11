@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI; 
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using System;
@@ -7,11 +8,14 @@ using System.Text;
 
 public class GetAPI : MonoBehaviour {
 
+
+    public RectTransform prefab = null;
+
     [Serializable]
     public class SpotElement
     {
-    public string   name    = string.Empty; //要素名
-    public float    score  = 0.0f;//スコア
+        public string   name    = string.Empty; //要素名
+        public float    score  = 0.0f;//スコア
     } 
 
 	// Use this for initialization
@@ -43,6 +47,12 @@ public class GetAPI : MonoBehaviour {
 
             spoele[i].name = list1[i];
             spoele[i].score = list2[i];
+
+            var elem = GameObject.Instantiate(prefab) as RectTransform;
+			elem.SetParent(transform, false);
+
+			var text = elem.GetComponentInChildren<Text>();
+			text.text = list1[i] +"\n" + list2[i].ToString();
         }
 
         // JSONにシリアライズ
