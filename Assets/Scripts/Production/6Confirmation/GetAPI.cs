@@ -10,49 +10,47 @@ public class GetAPI : MonoBehaviour {
     [Serializable]
     public class SpotElement
     {
-    public string   element    = string.Empty;
-    public float    score  = 0.0f;
+    public string   name    = string.Empty; //要素名
+    public float    score  = 0.0f;//スコア
     } 
 
 	// Use this for initialization
 	void Start () 
     {
-        var buffByte = CameraReader.bytes;
-        var annotationsData = TransAPI.RequestVisionAPI(Convert.ToBase64String(buffByte));
+        var buffByte = CameraReader.bytes;//元画像取得
+        var annotationsData = TransAPI.RequestVisionAPI(Convert.ToBase64String(buffByte));//画像を投げて結果を受け取る
 
-        
         var list1 = new List<string>();
         var list2 = new List<float>();
-        var count = 0;
-
-
+        
         foreach (var item1 in annotationsData.responses)
         {
             foreach (var item2 in item1.labelAnnotations)
             {
-                Debug.Log(item2.description);
-                Debug.Log(item2.score);
-
+                //リストに追加
                 list1.Add(item2.description);
                 list2.Add(item2.score);
-                count++;
             }
         }
 
-        var spoele = new SpotElement[count];
+        
+        SpotElement[] spoele = new SpotElement[list1.Count];
 
-        for(int i=0;i<count;i++)
+        //配列にぶち込む
+        for(int i=0;i<list1.Count;i++)
         {
-            spoele[i].element = list1[i];
+            spoele[i] = new SpotElement();            
+
+            spoele[i].name = list1[i];
             spoele[i].score = list2[i];
         }
 
-                // JSONにシリアライズ
-        var json = JsonHelper.ToJson (spoele);
+        // JSONにシリアライズ
+        var json = JsonHelper.ToJson <SpotElement>(spoele,true);
         Debug.Log(json);
 
         // フォルダに保存する
-        var path = Application.dataPath + "test.txt";//ファイル名をspot名にしてファイル指定
+        var path = Application.dataPath + "/test.txt";//ファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();

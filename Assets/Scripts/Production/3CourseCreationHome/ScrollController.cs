@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 
 
 public class ScrollController : MonoBehaviour {
@@ -18,14 +19,15 @@ public class ScrollController : MonoBehaviour {
 		//"C:\test"以下の".txt"ファイルをすべて取得する
 		string[] files = Directory.GetFiles(directory, "*.json");
 
+		//GameObject Panel[fileCount];
+
+		var Panel = new List<GameObject>();
+
 		//ファイルの個数分スクロースバーに追加
 		for(int i=0; i<fileCount; i++)
 		{
 			//var item = GameObject.Instantiate(prefab) as RectTransform;
 			//item.SetParent(transform, false);
-
-			
-
 
 			var text = obj.GetComponentInChildren<Text>();
 
@@ -34,7 +36,7 @@ public class ScrollController : MonoBehaviour {
 
 			text.text = spot.name;//表示
 
-			Instantiate(obj, transform, false);
+			Panel.Add(Instantiate(obj, transform, false) as GameObject);
 		}
 	}
 }

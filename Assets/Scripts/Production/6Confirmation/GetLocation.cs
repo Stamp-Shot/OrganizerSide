@@ -65,11 +65,12 @@ public class GetLocation : MonoBehaviour
 
     }
 
+    //マップを表示させるための関数
     IEnumerator GetMap()
     {
         url += latitude + "%2C" + longitude + 
         "&markers=size%3Amid%7Ccolor%3Ared%7C" + latitude + "%2C" + longitude +
-        "&zoom=16&size=1440x810&key=AIzaSyACZEuZaYoXJCl3l-JhoXcfMpRod1XhBYo";
+        "&zoom=16&size=600x600&key=AIzaSyACZEuZaYoXJCl3l-JhoXcfMpRod1XhBYo";
 
         // Start a download of the given URL
         using (WWW www = new WWW(url))
