@@ -60,6 +60,7 @@ public class GetLocation : MonoBehaviour
 
         this.GetComponent<Text>().text = "Location:" +
         latitude + " , " + longitude; //座標表示
+        
 
         Input.location.Stop(); //おわおわり
 

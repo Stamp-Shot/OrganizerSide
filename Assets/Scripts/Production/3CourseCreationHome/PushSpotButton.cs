@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PushSpotButton : MonoBehaviour {
 
@@ -8,4 +9,5 @@ public class PushSpotButton : MonoBehaviour {
 	{
 		Debug.Log(transform.position.y);
 	}
+
 }

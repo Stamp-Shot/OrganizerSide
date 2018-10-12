@@ -30,7 +30,7 @@ public class JsonData : MonoBehaviour
         spot.longitude = GetLocation.longitude; //経度
 
         // JSONにシリアライズ
-        var json = JsonUtility.ToJson (spot);
+        var json = JsonUtility.ToJson (spot)
 
         // フォルダに保存する
         var path = Application.dataPath + "/Json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定

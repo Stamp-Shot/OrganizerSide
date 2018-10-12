@@ -15,20 +15,13 @@ public class ScrollController : MonoBehaviour {
 	{
 		var directory = @"C:\Users\gobou\OneDrive\ドキュメント\Unity\StampShot\Assets/Json";//パス指定
 		var fileCount = Directory.GetFiles(directory, "*.json", SearchOption.AllDirectories).Length;//指定されたフォルダ内のファイル数を数える
-
-		//"C:\test"以下の".txt"ファイルをすべて取得する
-		string[] files = Directory.GetFiles(directory, "*.json");
-
-		//GameObject Panel[fileCount];
+		string[] files = Directory.GetFiles(directory, "*.json");//"C:\test"以下のjsonファイルをすべて取得する
 
 		var Panel = new List<GameObject>();
 
 		//ファイルの個数分スクロースバーに追加
 		for(int i=0; i<fileCount; i++)
 		{
-			//var item = GameObject.Instantiate(prefab) as RectTransform;
-			//item.SetParent(transform, false);
-
 			var text = obj.GetComponentInChildren<Text>();
 
 			var json = File.ReadAllText(files[i]);//ファイル読み込み
