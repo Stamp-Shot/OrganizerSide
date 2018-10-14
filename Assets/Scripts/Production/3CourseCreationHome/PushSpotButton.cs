@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PushSpotButton : MonoBehaviour {
 
-	public void OnClick()
+	public Text text;
+	string SpotName;
+
+	public void PushAddSpotButton()
 	{
-		Debug.Log(transform.position.y);
+		SceneManager.LoadScene("5Shooting"); //シーンを呼び出す
+	}
+
+	public void PushDescriptionButton()
+	{
+		SpotName = text.text;
+		Debug.Log(SpotName);
 	}
 
 }

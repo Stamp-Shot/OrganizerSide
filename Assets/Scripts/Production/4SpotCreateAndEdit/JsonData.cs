@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System; // UnityJsonを使う場合に必要
 using System.IO; // ファイル書き込みに必要
 
@@ -30,14 +31,22 @@ public class JsonData : MonoBehaviour
         spot.longitude = GetLocation.longitude; //経度
 
         // JSONにシリアライズ
-        var json = JsonUtility.ToJson (spot)
+        var json = JsonUtility.ToJson (spot);
+
+        //指定したパスにディレクトリが存在しなあったら作成
+        if ( !Directory.Exists("/sdcard/Json") )
+        {
+            Directory.CreateDirectory("/sdcard/Json");
+        }
 
         // フォルダに保存する
-        var path = Application.dataPath + "/Json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
+        var path = "/sdcard/Json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();
         writer.Close ();
+
+        SceneManager.LoadScene("3CourseCreationHome");
     }
 }
 

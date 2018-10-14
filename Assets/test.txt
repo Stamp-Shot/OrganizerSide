@@ -1,44 +1,24 @@
 {
     "Items": [
         {
-            "name": "hair",
-            "score": 0.9713257551193237
+            "name": "dairy product",
+            "score": 0.7852580547332764
         },
         {
-            "name": "eyebrow",
-            "score": 0.8730977177619934
+            "name": "drink",
+            "score": 0.7158420085906982
         },
         {
-            "name": "hairstyle",
-            "score": 0.8642445802688599
+            "name": "food",
+            "score": 0.5907607078552246
         },
         {
-            "name": "head",
-            "score": 0.8592774271965027
+            "name": "milk",
+            "score": 0.5900201201438904
         },
         {
-            "name": "forehead",
-            "score": 0.826386034488678
-        },
-        {
-            "name": "snapshot",
-            "score": 0.8176745176315308
-        },
-        {
-            "name": "eye",
-            "score": 0.7636852860450745
-        },
-        {
-            "name": "black hair",
-            "score": 0.7592723369598389
-        },
-        {
-            "name": "cool",
-            "score": 0.6811286807060242
-        },
-        {
-            "name": "girl",
-            "score": 0.6586933732032776
+            "name": "product",
+            "score": 0.530388593673706
         }
     ]
 }
