@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PushSpotButton : MonoBehaviour {
 
 	public Text text;
-	string SpotName;
+	public static string SpotName;
 
 	public void PushAddSpotButton()
 	{
@@ -17,7 +17,7 @@ public class PushSpotButton : MonoBehaviour {
 	public void PushDescriptionButton()
 	{
 		SpotName = text.text;
-		Debug.Log(SpotName);
+		SceneManager.LoadScene("7SpotDetails"); //シーンを呼び出す
 	}
 
 }

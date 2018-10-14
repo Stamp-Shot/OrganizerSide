@@ -11,12 +11,6 @@ public class GetAPI : MonoBehaviour {
 
     public RectTransform prefab = null;
 
-    [Serializable]
-    public class SpotElement
-    {
-        public string   name    = string.Empty; //要素名
-        public float    score  = 0.0f;//スコア
-    } 
 
 	// Use this for initialization
 	void Start () 

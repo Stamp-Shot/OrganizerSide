@@ -13,6 +13,14 @@ public class Spot
     public string   description    = string.Empty;
     public float      latitude    = 0.0f;
     public float     longitude  = 0.0f;
+    public SpotElement[] spotelement;
+} 
+
+[Serializable]
+public class SpotElement
+{
+    public string   name    = string.Empty; //要素名
+    public float    score  = 0.0f;//スコア
 } 
 
 public class JsonData : MonoBehaviour
@@ -31,20 +39,23 @@ public class JsonData : MonoBehaviour
         spot.longitude = GetLocation.longitude; //経度
 
         // JSONにシリアライズ
-        var json = JsonUtility.ToJson (spot);
-
+        var json = JsonUtility.ToJson (spot,true);
+/* 
         //指定したパスにディレクトリが存在しなあったら作成
         if ( !Directory.Exists("/sdcard/Json") )
         {
             Directory.CreateDirectory("/sdcard/Json");
         }
-
-        // フォルダに保存する
-        var path = "/sdcard/Json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
+*/
+        // jsonファイルをフォルダに保存する
+        var path = Application.dataPath + "/Json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();
         writer.Close ();
+
+        //撮影した写真をpng形式で保存
+        File.WriteAllBytes( Application.dataPath + "/Picture/" + spot.name + ".png",CameraReader.bytes);
 
         SceneManager.LoadScene("3CourseCreationHome");
     }

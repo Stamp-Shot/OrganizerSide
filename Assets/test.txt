@@ -1,24 +1,44 @@
 {
     "Items": [
         {
-            "name": "dairy product",
-            "score": 0.7852580547332764
+            "name": "hair",
+            "score": 0.9795461893081665
         },
         {
-            "name": "drink",
-            "score": 0.7158420085906982
+            "name": "glasses",
+            "score": 0.8474544882774353
         },
         {
-            "name": "food",
-            "score": 0.5907607078552246
+            "name": "hairstyle",
+            "score": 0.8422465324401856
         },
         {
-            "name": "milk",
-            "score": 0.5900201201438904
+            "name": "forehead",
+            "score": 0.7593956589698792
         },
         {
-            "name": "product",
-            "score": 0.530388593673706
+            "name": "vision care",
+            "score": 0.754059374332428
+        },
+        {
+            "name": "facial hair",
+            "score": 0.7269880771636963
+        },
+        {
+            "name": "black hair",
+            "score": 0.6882569193840027
+        },
+        {
+            "name": "fun",
+            "score": 0.6370660066604614
+        },
+        {
+            "name": "selfie",
+            "score": 0.5852616429328919
+        },
+        {
+            "name": "eyewear",
+            "score": 0.5534206032752991
         }
     ]
 }
