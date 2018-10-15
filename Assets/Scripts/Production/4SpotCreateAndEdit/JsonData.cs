@@ -13,7 +13,6 @@ public class Spot
     public string   description    = string.Empty;
     public float      latitude    = 0.0f;
     public float     longitude  = 0.0f;
-    public SpotElement[] spotelement;
 } 
 
 [Serializable]
@@ -53,6 +52,10 @@ public class JsonData : MonoBehaviour
         writer.WriteLine (json);
         writer.Flush ();
         writer.Close ();
+
+        //APIjsonファイルの名前を変更する
+        File.Move(Application.dataPath + "/Json/API/testAPI.json", 
+            Application.dataPath + "/Json/API/" + spot.name + "API.json");
 
         //撮影した写真をpng形式で保存
         File.WriteAllBytes( Application.dataPath + "/Picture/" + spot.name + ".png",CameraReader.bytes);

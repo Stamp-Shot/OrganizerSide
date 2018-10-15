@@ -51,10 +51,9 @@ public class GetAPI : MonoBehaviour {
 
         // JSONにシリアライズ
         var json = JsonHelper.ToJson <SpotElement>(spoele,true);
-        Debug.Log(json);
 
         // フォルダに保存する
-        var path = Application.dataPath + "/test.txt";//ファイル指定
+        var path = Application.dataPath + "/Json/API/testAPI.json";//ファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();

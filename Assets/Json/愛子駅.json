@@ -1,1 +1,6 @@
-{"name":"愛子駅","description":"仙台高専広瀬キャンパスの最寄り駅","latitude":0.0,"longitude":0.0}
+{
+    "name": "愛子駅",
+    "description": "仙台高専の最寄り駅",
+    "latitude": 38.27271,
+    "longitude": 140.76161
+}
