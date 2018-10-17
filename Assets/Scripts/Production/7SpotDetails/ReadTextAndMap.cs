@@ -19,7 +19,7 @@ public class ReadTextAndMap : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-			var path = Application.dataPath + "/Json/" + PushSpotButton.SpotName + ".json"; //現在のパス
+			var path = Application.dataPath + "/course/spot/json/" + PushSpotButton.SpotName + ".json"; //現在のパス
 
 			var json = File.ReadAllText(path);//ファイル読み込み
 			var spot = JsonUtility.FromJson<Spot>(json);//jsonからデータ読み込み

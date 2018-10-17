@@ -47,18 +47,18 @@ public class JsonData : MonoBehaviour
         }
 */
         // jsonファイルをフォルダに保存する
-        var path = Application.dataPath + "/Json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
+        var path = Application.dataPath + "/course/spot/json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();
         writer.Close ();
 
         //APIjsonファイルの名前を変更する
-        File.Move(Application.dataPath + "/Json/API/testAPI.json", 
-            Application.dataPath + "/Json/API/" + spot.name + "API.json");
+        File.Move(Application.dataPath + "/course/spot/json/API/testAPI.json", 
+            Application.dataPath + "/course/spot/json/API/" + spot.name + "API.json");
 
         //撮影した写真をpng形式で保存
-        File.WriteAllBytes( Application.dataPath + "/Picture/" + spot.name + ".png",CameraReader.bytes);
+        File.WriteAllBytes( Application.dataPath + "/course/spot/picture/" + spot.name + ".png",CameraReader.bytes);
 
         SceneManager.LoadScene("3CourseCreationHome");
     }

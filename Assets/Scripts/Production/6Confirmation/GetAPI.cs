@@ -53,7 +53,7 @@ public class GetAPI : MonoBehaviour {
         var json = JsonHelper.ToJson <SpotElement>(spoele,true);
 
         // フォルダに保存する
-        var path = Application.dataPath + "/Json/API/testAPI.json";//ファイル指定
+        var path = Application.dataPath + "/course/spot/json/API/testAPI.json";//ファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();

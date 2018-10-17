@@ -11,9 +11,9 @@ public class ReadElement : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		var path = Application.dataPath + "/Json/API/" + PushSpotButton.SpotName + "API.json"; //現在のパス
+		var path = Application.dataPath + "/course/spot/json/API/" + PushSpotButton.SpotName + "API.json"; //現在のパス
 		var json = File.ReadAllText(path);//ファイル読み込み
-		SpotElement[] element = JsonUtility.FromJson<SpotElement[]>(json);//jsonからデータ読み込み
+		var element = JsonUtility.FromJson<SpotElement[]>(json);//jsonからデータ読み込み
 		
 		for(int i=0;i<element.Length;i++)
         {
@@ -24,6 +24,4 @@ public class ReadElement : MonoBehaviour {
 			text.text = element[i].name +"\n" + element[i].score.ToString();
         }
 	}
-	
-
 }
