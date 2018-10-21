@@ -8,12 +8,11 @@ using System.Collections.Generic;
 public class ScrollController : MonoBehaviour {
 
 	[SerializeField]
-	RectTransform prefab = null;
 	public GameObject obj;
 
 	void Start () 
 	{
-		var directory = Application.dataPath + "/course/spot/json";//パス指定
+		var directory = Application.dataPath + "/course/spot/json/";//パス指定
 		//"/sdcard/Json";
 		var fileCount = Directory.GetFiles(directory, "*.json", SearchOption.AllDirectories).Length;//指定されたフォルダ内のファイル数を数える
 		string[] files = Directory.GetFiles(directory, "*.json");//"C:\test"以下のjsonファイルをすべて取得する

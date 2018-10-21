@@ -13,7 +13,7 @@ public class ReadElement : MonoBehaviour {
 	{
 		var path = Application.dataPath + "/course/spot/json/API/" + PushSpotButton.SpotName + "API.json"; //現在のパス
 		var json = File.ReadAllText(path);//ファイル読み込み
-		var element = JsonUtility.FromJson<SpotElement[]>(json);//jsonからデータ読み込み
+		var element = JsonHelper.FromJson<SpotElement>(json);//jsonからデータ読み込み
 		
 		for(int i=0;i<element.Length;i++)
         {

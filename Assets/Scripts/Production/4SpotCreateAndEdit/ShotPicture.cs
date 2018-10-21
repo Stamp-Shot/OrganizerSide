@@ -7,6 +7,7 @@ public class ShotPicture : MonoBehaviour {
 
 	public void OnClick()
 	{
+		CameraReader.transition = "6Confirmation";
 		SceneManager.LoadScene("5Shooting"); //シーンを呼び出す
 	}
 }

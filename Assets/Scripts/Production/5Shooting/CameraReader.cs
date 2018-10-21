@@ -13,6 +13,7 @@ public class CameraReader : MonoBehaviour
     private int fps = 30;
     WebCamTexture webcamTexture;
     public static byte[] bytes;
+    public static string transition;//どのSceneに遷移するかを決める
     public Color32[] webcamreadColor;
 
     private int PictureCount = 0;
@@ -42,7 +43,7 @@ public class CameraReader : MonoBehaviour
 
         webcamTexture.Stop(); //カメラ停止
 
-        SceneManager.LoadScene("6Confirmation"); //シーンを呼び出す
+        SceneManager.LoadScene(transition); //シーンを呼び出す
 
     }
 }

@@ -12,6 +12,7 @@ public class ConfirmationButtonClick : MonoBehaviour {
 
 	public void NGClick()//NGボタンが押されたら
 	{
+		CameraReader.transition = "6Confirmation";
 		SceneManager.LoadScene("5Shooting"); //シーンを呼び出す
 	}
 }

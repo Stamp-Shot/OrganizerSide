@@ -1,0 +1,24 @@
+{
+    "Items": [
+        {
+            "name": "product",
+            "score": 0.7778017520904541
+        },
+        {
+            "name": "leather",
+            "score": 0.7579626441001892
+        },
+        {
+            "name": "material",
+            "score": 0.6608729958534241
+        },
+        {
+            "name": "caramel color",
+            "score": 0.6550545692443848
+        },
+        {
+            "name": "metal",
+            "score": 0.5546876788139343
+        }
+    ]
+}

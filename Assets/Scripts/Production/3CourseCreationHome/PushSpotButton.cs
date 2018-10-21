@@ -11,6 +11,7 @@ public class PushSpotButton : MonoBehaviour {
 
 	public void PushAddSpotButton()
 	{
+		CameraReader.transition = "6Confirmation";
 		SceneManager.LoadScene("5Shooting"); //シーンを呼び出す
 	}
 
