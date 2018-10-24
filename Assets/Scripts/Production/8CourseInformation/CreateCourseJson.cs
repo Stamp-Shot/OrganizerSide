@@ -19,7 +19,7 @@ public class Course
 public class SpotAttributes
 {
     public string   name    = string.Empty;
-    public float GPU_X = 0.0f;
+    public float GPS_X = 0.0f;
     public float GPS_Y = 0.0f;
     public string comment = string.Empty;
 } 
@@ -33,7 +33,7 @@ public class CreateCourseJson : MonoBehaviour
     {
         var course = new Course();
 
-        var directory = Application.dataPath + "/course/spot/json/";//パス指定
+        var directory = "/sdcard/StampShot/course/spot/json";//パス指定
 		var fileCount = Directory.GetFiles(directory, "*.json", SearchOption.AllDirectories).Length;//指定されたフォルダ内のファイル数を数える
 		string[] files = Directory.GetFiles(directory, "*.json");//"C:\test"以下のjsonファイルをすべて取得する
 
@@ -51,7 +51,7 @@ public class CreateCourseJson : MonoBehaviour
 
             CourseSpot[i] = new SpotAttributes();
             CourseSpot[i].name = ReadSpot.name;
-            CourseSpot[i].GPU_X = ReadSpot.latitude;
+            CourseSpot[i].GPS_X = ReadSpot.latitude;
             CourseSpot[i].GPS_Y = ReadSpot.longitude;
             CourseSpot[i].comment = ReadSpot.description;
         }
@@ -60,15 +60,16 @@ public class CreateCourseJson : MonoBehaviour
         var Wjson = JsonUtility.ToJson(course,true);
 
         // jsonファイルをフォルダに保存する
-        var Wpath = Application.dataPath + "/course/" + course.name + ".json";//ファイル名をspot名にしてファイル指定
+        var Wpath = "/sdcard/StampShot/course/" + course.name + ".json";//ファイル名をspot名にしてファイル指定
         var writer = new StreamWriter (Wpath, false); // 上書き
         writer.WriteLine (Wjson);
         writer.Flush ();
         writer.Close ();
 
         //フォルダの名前を変更する
-        Directory.Move(Application.dataPath + "/course", Application.dataPath + "/" + course.name);
+        Directory.Move("/sdcard/StampShot/course", Application.dataPath + "/" + course.name);
 
+        PushButton.PreviousScene = "8CourseInformation";
         SceneManager.LoadScene("3CourseCreationHome");
     }
 }

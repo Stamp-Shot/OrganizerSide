@@ -43,6 +43,7 @@ public class CameraReader : MonoBehaviour
 
         webcamTexture.Stop(); //カメラ停止
 
+        PushButton.PreviousScene = "5Shooting";
         SceneManager.LoadScene(transition); //シーンを呼び出す
 
     }

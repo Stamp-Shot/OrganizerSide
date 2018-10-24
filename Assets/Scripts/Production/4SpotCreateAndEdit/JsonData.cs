@@ -39,27 +39,28 @@ public class JsonData : MonoBehaviour
 
         // JSONにシリアライズ
         var json = JsonUtility.ToJson (spot,true);
-/* 
+ 
         //指定したパスにディレクトリが存在しなあったら作成
         if ( !Directory.Exists("/sdcard/Json") )
         {
             Directory.CreateDirectory("/sdcard/Json");
         }
-*/
+
         // jsonファイルをフォルダに保存する
-        var path = Application.dataPath + "/course/spot/json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
+        var path = "/sdcard/StampShot/course/spot/json/" + spot.name + ".json";//ファイル名をspot名にしてファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();
         writer.Close ();
 
         //APIjsonファイルの名前を変更する
-        File.Move(Application.dataPath + "/course/spot/json/API/testAPI.json", 
-            Application.dataPath + "/course/spot/json/API/" + spot.name + "API.json");
+        File.Move("/sdcard/StampShot/course/spot/json/API/testAPI.json", 
+            "/sdcard/StampShot/course/spot/json/API/" + spot.name + "API.json");
 
         //撮影した写真をpng形式で保存
-        File.WriteAllBytes( Application.dataPath + "/course/spot/picture/" + spot.name + ".png",CameraReader.bytes);
+        File.WriteAllBytes( "/sdcard/StampShot/course/spot/picture/" + spot.name + ".png",CameraReader.bytes);
 
+        PushButton.PreviousScene = "4SpotCreateAndEdit";
         SceneManager.LoadScene("3CourseCreationHome");
     }
 }

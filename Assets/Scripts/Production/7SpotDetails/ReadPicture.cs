@@ -49,7 +49,7 @@ public class ReadPicture : MonoBehaviour {
     
     void Start()
     {
-		var path = Application.dataPath + "/course/spot/picture/" + PushSpotButton.SpotName + ".png"; //現在のパス
+		var path = "/sdcard/StampShot/course/spot/picture/" + PushSpotButton.SpotName + ".png"; //現在のパス
         rawimage.texture = ReadPng(path);//パスからpngファイルを読み込む
     }
 }

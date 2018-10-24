@@ -12,13 +12,20 @@ public class PushSpotButton : MonoBehaviour {
 	public void PushAddSpotButton()
 	{
 		CameraReader.transition = "6Confirmation";
+		PushButton.PreviousScene = "3COurseCreationHome";
 		SceneManager.LoadScene("5Shooting"); //シーンを呼び出す
 	}
 
 	public void PushDescriptionButton()
 	{
 		SpotName = text.text;
+		PushButton.PreviousScene = "3COurseCreationHome";
 		SceneManager.LoadScene("7SpotDetails"); //シーンを呼び出す
 	}
 
+	public void PushFinishButton()
+	{
+		PushButton.PreviousScene = "3COurseCreationHome";
+		SceneManager.LoadScene("8CourseInformation"); //シーンを呼び出す
+	}
 }

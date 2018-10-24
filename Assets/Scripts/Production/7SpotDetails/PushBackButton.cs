@@ -7,6 +7,7 @@ public class PushBackButton: MonoBehaviour {
 
 	public void PushbackButton()
 	{
+		PushButton.PreviousScene = "7SpotDetails";
 		SceneManager.LoadScene("3CourseCreationHome");
 	}
 }

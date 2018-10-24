@@ -11,7 +11,7 @@ public class ReadElement : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		var path = Application.dataPath + "/course/spot/json/API/" + PushSpotButton.SpotName + "API.json"; //現在のパス
+		var path = "/sdcard/StampShot/course/spot/json/API/" + PushSpotButton.SpotName + "API.json"; //現在のパス
 		var json = File.ReadAllText(path);//ファイル読み込み
 		var element = JsonHelper.FromJson<SpotElement>(json);//jsonからデータ読み込み
 		

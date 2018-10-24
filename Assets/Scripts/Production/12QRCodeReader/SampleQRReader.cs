@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SampleQRReader : MonoBehaviour
 {
-    string _result = null;
-    WebCamTexture _webCam;
+    string result = null;
+    WebCamTexture webCam;
+    public RawImage rawImage;
 
     IEnumerator Start()
     {
@@ -20,16 +22,24 @@ public class SampleQRReader : MonoBehaviour
         WebCamDevice[] devices = WebCamTexture.devices;
         if (devices == null || devices.Length == 0)
             yield break;
-        _webCam = new WebCamTexture(devices[0].name, Screen.width, Screen.height, 12);
-        _webCam.Play();
+        webCam = new WebCamTexture(devices[0].name, Screen.width, Screen.height, 30);
+        rawImage.texture  = webCam;
+        webCam.Play();
     }
 
     void Update()
     {
-        if (_webCam != null)
+        if (webCam != null)
         {
-            _result = QRCodeHelper.Read(_webCam);
-            Debug.LogFormat("result : " + _result);
+            result = QRCodeHelper.Read(webCam);
+
+            if(result != "error")
+            {
+                webCam.Stop();
+                Debug.LogFormat("result : " + result);
+                PushButton.PreviousScene = "12QRCodeReader";
+                SceneManager.LoadScene("13ItemExchange");
+            }
         }
     }
 

@@ -7,6 +7,7 @@ public class StartButton : MonoBehaviour {
 
 	public void StartButtonPush()
 	{
+		PushButton.PreviousScene = "1Start";
 		SceneManager.LoadScene("2Menu"); 
 	}
 }

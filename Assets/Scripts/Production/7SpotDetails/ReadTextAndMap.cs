@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ReadTextAndMap : MonoBehaviour {
+	public static string path;
 
 	public Text name;
 	public Text description;
@@ -19,9 +20,9 @@ public class ReadTextAndMap : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-			var path = Application.dataPath + "/course/spot/json/" + PushSpotButton.SpotName + ".json"; //現在のパス
+			path = "/sdcard/StampShot/course/spot/"; //現在のパス
 
-			var json = File.ReadAllText(path);//ファイル読み込み
+			var json = File.ReadAllText(path +"/json/" +PushSpotButton.SpotName + ".json");//ファイル読み込み
 			var spot = JsonUtility.FromJson<Spot>(json);//jsonからデータ読み込み
 
 			name.text = spot.name;

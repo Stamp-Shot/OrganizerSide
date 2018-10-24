@@ -19,4 +19,9 @@ public class PictureShooting : MonoBehaviour
     {
         script.Save(); //CameraReaderのSave()を実行
     }
+
+    public void BackButtonClick()
+    {
+        
+    }
 }

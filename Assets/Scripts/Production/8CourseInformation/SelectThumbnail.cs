@@ -12,8 +12,8 @@ public class SelectThumbnail : MonoBehaviour {
 
 	void Start () 
 	{
-		var JsonDirectory = Application.dataPath + "/course/spot/json/";//パス指定
-		var PictureDirectory = Application.dataPath + "/course/spot/picture/";//パス指定
+		var JsonDirectory = "/sdcard/StampShot/course/spot/json/";//パス指定
+		var PictureDirectory = "/sdcard/StampShot/course/spot/picture/";//パス指定
 		
 		var fileCount = Directory.GetFiles(JsonDirectory, "*.json", SearchOption.AllDirectories).Length;//指定されたフォルダ内のファイル数を数える
 

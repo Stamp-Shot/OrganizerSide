@@ -16,22 +16,18 @@ public class GetAPI : MonoBehaviour {
 	void Start () 
     {
         var buffByte = CameraReader.bytes;//元画像取得
-        var annotationsData = TransAPI.RequestVisionAPI(Convert.ToBase64String(buffByte));//画像を投げて結果を受け取る
+        var annotationsData = APIFunction.RequestVisionAPI(Convert.ToBase64String(buffByte));//画像を投げて結果を受け取る
 
         var list1 = new List<string>();
         var list2 = new List<float>();
         
-        foreach (var item1 in annotationsData.responses)
+        foreach (var item in annotationsData)
         {
-            foreach (var item2 in item1.labelAnnotations)
-            {
-                //リストに追加
-                list1.Add(item2.description);
-                list2.Add(item2.score);
-            }
+            //リストに追加
+            list1.Add(item.description);
+            list2.Add(item.score);
         }
 
-        
         SpotElement[] spoele = new SpotElement[list1.Count];
 
         //配列にぶち込む
@@ -53,7 +49,7 @@ public class GetAPI : MonoBehaviour {
         var json = JsonHelper.ToJson <SpotElement>(spoele,true);
 
         // フォルダに保存する
-        var path = Application.dataPath + "/course/spot/json/API/testAPI.json";//ファイル指定
+        var path = "/sdcard/StampShot/course/spot/json/API/testAPI.json";//ファイル指定
         var writer = new StreamWriter (path, false); // 上書き
         writer.WriteLine (json);
         writer.Flush ();
@@ -64,136 +60,71 @@ public class GetAPI : MonoBehaviour {
 //判定関係
 public class CheckFunction
 {
-    //上から三つを抽出
-    private static EntityAnnotation[] GetTop3(responseBody annotations)
+    //1. 元のデータから要らない部分を捨てる
+    //2. 上から何個か取る
+    //3. 同じ要素があったらtrue
+
+    //1. 元のデータから要らない部分を捨てる
+    public static EntityAnnotation[] removeAnnotation(EntityAnnotation[] entityAnnotations)
     {
+        string[] blackList = {
+            "sky",
+            "nature",
+            "cloud",
+            "tree",
+            "grassland",
+            "horizon",
+            "reflection",
+            "ecosystem",
+            "vegetation",
+            "atomosphere",
+            "plant"
+        };
         var retAnnotations = new List<EntityAnnotation>();
 
-        for (int i = 0; i < 3; i++)
+        foreach (var annotation in entityAnnotations)
         {
-            retAnnotations.Add(annotations.responses[0].labelAnnotations[i]);
-        }
-
-        return retAnnotations.ToArray();
-    }
-
-    //同じ要素を取る
-    private static EntityAnnotation[] GetSameAnnotations(EntityAnnotation[] originData, responseBody fromData)
-    {
-        var retAnnotations = new List<EntityAnnotation>();
-
-        for (int i = 0; i < 3; i++)
-        {
-            foreach (var item in fromData.responses[0].labelAnnotations)
-            {
-                if (item.description == originData[i].description)
-                {
-                    retAnnotations.Add(item);
-                }
-            }
-
-            //例外処理を取らないといけない
-            //if (retAnnotations[i] == null)
-            //{
-            //    return 
-            //}
-        }
-
-        return retAnnotations.ToArray();
-    }
-
-    //比に変換
-    private static EntityAnnotation[] ConvertToRatio(EntityAnnotation[] annotation)
-    {
-        var denominator = new float();
-        denominator = 0;
-
-        foreach (var item in annotation)
-        {
-            if (denominator == 0 || denominator < item.score)
-            {
-                denominator = item.score;
-            }
-        }
-
-        foreach (var item in annotation)
-        {
-            item.score /= denominator;
-        }
-
-        return annotation;
-    }
-
-    //比の差を取って合計
-    private static float TakeDifferenceSum(EntityAnnotation[] originData, EntityAnnotation[] fromData)
-    {
-        var retDifference = new float();
-        for (int i = 0; i < originData.Length; i++)
-        {
-            retDifference += originData[i].score - fromData[i].score;
-        }
-
-        return retDifference;
-    }
-
-    //一致判定を取る
-    public static bool CheckDifference(responseBody originData, responseBody fromData)
-    {
-        var buffOrigin = GetTop3(originData);
-        var buffFrom = GetSameAnnotations(buffOrigin, fromData);
-        buffOrigin = ConvertToRatio(buffOrigin);
-        buffFrom = ConvertToRatio(buffFrom);
-
-        var checkResult = TakeDifferenceSum(buffOrigin, buffFrom);
-
-        //判定式
-        var limit = 10;
-        if (checkResult < limit)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-
-}
-
-//API通信関係
-public class TransAPI
-{
-    // 除外するやつ
-    public static EntityAnnotation[] RemoveAttributeData(responseBody originData, string[] blackList)
-    {
-        var retAnnotations = new List<EntityAnnotation>();
-
-        // 画像ごと
-        foreach (var item1 in originData.responses)
-        {
-            // 属性ごと
-            foreach (var item2 in item1.labelAnnotations)
-            {
-                // ブラックリストと一致してたら追加しない
-                if (!CheckRemove(item1.labelAnnotations.ToArray(), blackList))
-                {
-                    retAnnotations.Add(item2);
-                }
-            }
-        }
-
-        return retAnnotations.ToArray();
-    }
-
-    // 除外するやつを判定するやつ
-    private static bool CheckRemove(EntityAnnotation[] annotations, string[] blackList)
-    {
-        foreach (var annotation in annotations)
-        {
+            var flag = true;
             foreach (var black in blackList)
             {
                 if (annotation.description == black)
+                {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if(flag){
+                    retAnnotations.Add(annotation);
+            }
+        }
+
+        return retAnnotations.ToArray();
+    }
+
+    //2. 上から三つ取る 使わない？
+    private EntityAnnotation[] pickUpTopThree(EntityAnnotation[] entityAnnotations)
+    {
+        const int elementCount = 3;
+
+        var retAnnotations = new List<EntityAnnotation>();
+
+        for (int i = 0; i < elementCount; i++)
+        {
+            retAnnotations.Add(entityAnnotations[i]);
+        }
+
+        return retAnnotations.ToArray();
+    }
+
+    //3-1. 同じ要素があったらtrue
+    private bool checkSameAnnotation(EntityAnnotation[] originData, EntityAnnotation[] compareData)
+    {
+        foreach (var item1 in originData)
+        {
+            foreach (var item2 in compareData)
+            {
+                if (item1.description == item2.description)
                 {
                     return true;
                 }
@@ -202,13 +133,25 @@ public class TransAPI
 
         return false;
     }
+    
+    //使うやつ
+    public bool checkMaster(EntityAnnotation[] originData, EntityAnnotation[] compareData)
+    {
+        var originBuffer = removeAnnotation(originData);
+        var compareBuffer = removeAnnotation(compareData);
+        return checkSameAnnotation(originBuffer, compareBuffer);
+    }
+}
 
+//API通信関係
+public class APIFunction
+{
     /// <summary>
     /// 画像データを与えるとGoogleCloudVisionでラベル検知したやつを返す。
     /// </summary>
     /// <param name="imageData"></param>
     /// <returns></returns>
-    public static responseBody RequestVisionAPI(string base64String)
+    public static EntityAnnotation[] RequestVisionAPI(string base64String)
     {
         // 参考:https://qiita.com/jyuko/items/e6115a5dfc959f52591d
 
@@ -249,9 +192,9 @@ public class TransAPI
         // 受信するまで待機
         while (!webRequest.isDone)
         {
-            Debug.Log("Hello World");
         }
 
-        return JsonUtility.FromJson<responseBody>(webRequest.downloadHandler.text);
+        var buff = JsonUtility.FromJson<responseBody>(webRequest.downloadHandler.text);
+        return CheckFunction.removeAnnotation(buff.responses[0].labelAnnotations.ToArray());
     }
 }
