@@ -60,7 +60,6 @@ public class JsonData : MonoBehaviour
         //撮影した写真をpng形式で保存
         File.WriteAllBytes( "/sdcard/StampShot/course/spot/picture/" + spot.name + ".png",CameraReader.bytes);
 
-        PushButton.PreviousScene = "4SpotCreateAndEdit";
         SceneManager.LoadScene("3CourseCreationHome");
     }
 }

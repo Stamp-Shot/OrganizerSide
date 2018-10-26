@@ -12,7 +12,7 @@ public class AddCourse : MonoBehaviour {
 
 	void Start () 
 	{
-		var directory = "/sdcard/StampShot/course/";//パス指定
+		var directory = "/sdcard/StampShot/";//パス指定
 		//"/sdcard/Json";
 		var fileCount = Directory.GetDirectories(directory, "*", SearchOption.AllDirectories).Length;//指定されたフォルダ内のファイル数を数える
 		string[] files = Directory.GetDirectories(directory, "*");//"C:\test"以下のjsonファイルをすべて取得する

@@ -34,17 +34,17 @@ public class CreateCourseJson : MonoBehaviour
         var course = new Course();
 
         var directory = "/sdcard/StampShot/course/spot/json";//パス指定
-		var fileCount = Directory.GetFiles(directory, "*.json", SearchOption.AllDirectories).Length;//指定されたフォルダ内のファイル数を数える
+		var fileCount = Directory.GetFiles(directory, "*.json").Length;//指定されたフォルダ内のファイル数を数える
 		string[] files = Directory.GetFiles(directory, "*.json");//"C:\test"以下のjsonファイルをすべて取得する
 
         //データ入力
         course.name = InputCourseName.text; //スポット名
-        course.spot_count = 8;//スポット数
+        course.spot_count = fileCount;//スポット数
         //サムネイルの画像ファイル名
 
         var CourseSpot = new SpotAttributes[8];
         Debug.Log(fileCount);
-        for(int i=0;i<8;i++)
+        for(int i=0;i<fileCount;i++)
         {
             var json = File.ReadAllText(files[i]);//ファイル読み込み
 			var ReadSpot = JsonUtility.FromJson<Spot>(json);//jsonからデータ読み込み
@@ -67,9 +67,8 @@ public class CreateCourseJson : MonoBehaviour
         writer.Close ();
 
         //フォルダの名前を変更する
-        Directory.Move("/sdcard/StampShot/course", Application.dataPath + "/" + course.name);
+        Directory.Move("/sdcard/StampShot/course", "/sdcard/StampShot/" + course.name);
 
-        PushButton.PreviousScene = "8CourseInformation";
-        SceneManager.LoadScene("3CourseCreationHome");
+        SceneManager.LoadScene("10ItemOption");
     }
 }

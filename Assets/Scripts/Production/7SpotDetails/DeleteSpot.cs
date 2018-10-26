@@ -11,7 +11,6 @@ public class DeleteSpot : MonoBehaviour {
 		File.Delete(ReadTextAndMap.path + "/json/" +PushSpotButton.SpotName + ".json");
 		File.Delete(ReadTextAndMap.path + "/json/API/" + PushSpotButton.SpotName + "API.json");
 		File.Delete(ReadTextAndMap.path + "/picture/" +PushSpotButton.SpotName + ".png");
-		PushButton.PreviousScene = "7SpotDetails";
 		SceneManager.LoadScene("3CourseCreationHome");
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PushBackButton: MonoBehaviour {
+public class ReturnMenuButton : MonoBehaviour {
 
-	public void PushbackButton()
+	public void PushReturnMenuButton()
 	{
-		SceneManager.LoadScene("3CourseCreationHome");
+		SceneManager.LoadScene("2Menu");
 	}
 }

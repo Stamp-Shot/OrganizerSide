@@ -8,7 +8,12 @@ public class PushItemButton : MonoBehaviour {
 	public void PushShotButton()
 	{
 		CameraReader.transition = "10ItemOption";
-		PushButton.PreviousScene = "10ItemOption";
+		CameraReader.ReturnFromCamera = "10ItemOption";
 		SceneManager.LoadScene("5Shooting"); //シーンを呼び出す
+	}
+
+	public void PushReturnButton()
+	{
+		SceneManager.LoadScene("8CourseInformations"); //シーンを呼び出す
 	}
 }

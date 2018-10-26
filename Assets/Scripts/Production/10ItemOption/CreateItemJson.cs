@@ -43,7 +43,6 @@ public class CreateItemJson : MonoBehaviour {
         //撮影した写真をpng形式で保存
         File.WriteAllBytes("/sdcard/StampShot/course/item/" + item.name + ".png",CameraReader.bytes);
 
-		PushButton.PreviousScene = "10ItemOption";
         SceneManager.LoadScene("2Menu");
 	}
 	

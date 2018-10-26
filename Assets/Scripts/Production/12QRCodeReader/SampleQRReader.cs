@@ -37,7 +37,6 @@ public class SampleQRReader : MonoBehaviour
             {
                 webCam.Stop();
                 Debug.LogFormat("result : " + result);
-                PushButton.PreviousScene = "12QRCodeReader";
                 SceneManager.LoadScene("13ItemExchange");
             }
         }

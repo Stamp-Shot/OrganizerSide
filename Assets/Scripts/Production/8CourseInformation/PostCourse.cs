@@ -9,7 +9,7 @@ public class PostCourse : MonoBehaviour {
 
 	public void FinishButtonClick()
 	{
-		var url = "https://stampshot.herokuapp.com/courses/";
+		var url = "https://stampshot.herokuapp.com/courses";
 		var path = "/sdcard/StampShot/course/TestCourse.json";//パス指定
 		var json = File.ReadAllText(path);//ファイル読み込み
 
